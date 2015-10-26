@@ -5,7 +5,19 @@ MAINTAINER Patsura Dmitry <talk@dmtry.me>
 RUN apt-get update
 
 RUN apt-get install -y git
-    wget apache2 libcurl4-openssl-dev libmcrypt-dev libxml2-dev libjpeg-dev libjpeg62 libfreetype6-dev libmysqlclient-dev libt1-dev libgmp-dev libpspell-dev libicu-dev librecode-dev \
+    libcurl4-openssl-dev \
+    libmcrypt-dev \
+    libxml2-dev \
+    libjpeg-dev \
+    libjpeg62 \
+    libfreetype6-dev \
+    libmysqlclient-dev \
+    libt1-dev \
+    libgmp-dev \
+    libpspell-dev \
+    libicu-dev \
+    librecode-dev \
+    curl \
     make \
     autoconf \
     build-essential \
