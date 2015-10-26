@@ -2,10 +2,15 @@ FROM ubuntu:15.10
 
 MAINTAINER Patsura Dmitry <talk@dmtry.me>
 
+ENV PHP_VERSION 7.0.0RC5
+
 RUN apt-get update
 
 RUN apt-get install -y --no-install-recommends \
+    ca-certificates \
     git \
+    libssl-dev \
+    libxml2-dev \
     libcurl4-openssl-dev \
     libmcrypt-dev \
     libxml2-dev \
@@ -24,12 +29,18 @@ RUN apt-get install -y --no-install-recommends \
     g++ \
     libc6-dev
 
-RUN cd /opt && git clone -b php-7.0.0RC5 https://github.com/php/php-src.git --depth=1
+
+RUN cd /opt && curl -SL "https://downloads.php.net/~ab/php-$PHP_VERSION.tar.xz" -o php.tar.xz \
+	&& mkdir -p /opt/php-src \
+	&& tar -xof php.tar.xz -C /opt/php-src --strip-components=1
 
 RUN cd /opt/php-src && ./buildconf --force
 
 RUN cd /opt/php-src && ./configure --quiet \
-    --prefix=/opt/php-nightly
+    --disable-cgi \
+    --with-curl \
+    --with-openssl \
+    --prefix=/opt/php7
 
 RUN cd /opt/php-src && make --quiet && make install
 
