@@ -4,7 +4,8 @@ MAINTAINER Patsura Dmitry <talk@dmtry.me>
 
 RUN apt-get update
 
-RUN apt-get install -y git
+RUN apt-get install -y --no-install-recommends \
+    git \
     libcurl4-openssl-dev \
     libmcrypt-dev \
     libxml2-dev \
@@ -12,7 +13,6 @@ RUN apt-get install -y git
     libjpeg62 \
     libfreetype6-dev \
     libmysqlclient-dev \
-    libt1-dev \
     libgmp-dev \
     libpspell-dev \
     libicu-dev \
