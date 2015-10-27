@@ -43,6 +43,6 @@ RUN cd /opt/php-src && ./configure --quiet \
     --with-curl \
     --prefix=/opt/php7
 
-RUN cd /opt/php-src && make --quiet && make install
+RUN cd /opt/php-src && make -j"$(nproc)" --quiet && make install
 
 ENTRYPOINT ["/bin/bash"]
