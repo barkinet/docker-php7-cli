@@ -7,6 +7,8 @@ ENV PHP_VERSION 7.0.0RC5
 RUN apt-get update
 
 RUN apt-get install -y --no-install-recommends \
+    re2c \
+    bison \
     ca-certificates \
     git \
     libssl-dev \
@@ -39,7 +41,6 @@ RUN cd /opt/php-src && ./buildconf --force
 RUN cd /opt/php-src && ./configure --quiet \
     --disable-cgi \
     --with-curl \
-    --with-openssl \
     --prefix=/opt/php7
 
 RUN cd /opt/php-src && make --quiet && make install
