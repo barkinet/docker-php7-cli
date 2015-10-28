@@ -2,7 +2,7 @@ FROM ubuntu:15.10
 
 MAINTAINER Patsura Dmitry <talk@dmtry.me>
 
-ENV PHP_VERSION 7.0.0RC5
+ENV PHP_VERSION 7.0.0RC6
 
 RUN apt-get update
 
