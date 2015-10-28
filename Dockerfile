@@ -36,13 +36,13 @@ RUN cd /opt && curl -SL "https://downloads.php.net/~ab/php-$PHP_VERSION.tar.xz" 
 	&& mkdir -p /opt/php-src \
 	&& tar -xof php.tar.xz -C /opt/php-src --strip-components=1
 
-RUN cd /opt/php-src && ./buildconf --force
-
-RUN cd /opt/php-src && ./configure --quiet \
-    --disable-cgi \
-    --with-curl \
-    --prefix=/opt/php7
-
-RUN cd /opt/php-src && make -j"$(nproc)" --quiet && make install
+RUN cd /opt/php-src \
+    && ./buildconf --force \
+    && ./configure --quiet \
+        --disable-cgi \
+        --with-curl \
+        --prefix=/opt/php7 \
+    && make -j"$(nproc)" --quiet \
+    && make install
 
 ENTRYPOINT ["/bin/bash"]
